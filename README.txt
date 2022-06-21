@@ -1,6 +1,9 @@
+Visit us at CVPR 2022 in the afternoon poster session (2.2, at poster 226b) on Wednesday, June 22, 2022!
+
 This code package implements the deformable prototypical part network (Deformable ProtoPNet) model
 described in "Deformable ProtoPNet: An Interpretable Image Classifier Using DeformablePrototypes," 
-published in CVPR 2022.
+published in CVPR 2022 and accessible at:
+https://openaccess.thecvf.com/content/CVPR2022/html/Donnelly_Deformable_ProtoPNet_An_Interpretable_Image_Classifier_Using_Deformable_Prototypes_CVPR_2022_paper.html
 
 This code integrates the publicly available code from (https://github.com/cfchen-duke/ProtoPNet) 
 implementing "This Looks Like That: Deep Learning for Interpretable Image Recognition" and from 
@@ -50,3 +53,12 @@ Instructions for finding the nearest patches to each prototype:
 -gpuid is the GPU device ID(s) you want to use (optional, default '0')
 -modeldir is the directory containing the model you want to analyze
 -model is the filename of the saved model you want to analyze
+
+Suggested citation: 
+@inproceedings{donnelly2022deformable,
+  title={{Deformable ProtoPNet: An Interpretable Image Classifier Using Deformable Prototypes}},
+  author={Donnelly, Jon and Barnett, Alina Jade and Chen, Chaofan},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={10265--10275},
+  year={2022}
+}
