@@ -10,7 +10,7 @@ implementing "This Looks Like That: Deep Learning for Interpretable Image Recogn
 (https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch/tree/pytorch_1.0.0) implementing
 "Deformable ConvNets v2: More Deformable, Better Results" and "Deformable Convolutional Networks."
 
-Prerequisites: PyTorch (version 1.8.1), TorchVision (version 0.9.1), NumPy (version 1.20.2), cv2 (version 4.5.1)
+Prerequisites: Python version 3.8.5; PyTorch (version 1.8.1), TorchVision (version 0.9.1), NumPy (version 1.20.2), cv2 (version 4.5.1)
 Recommended hardware: 2  Nvidia A100 SXM4 or 2 NVIDIA Tesla V-100 GPUs
 
 Instructions for preparing the data:
