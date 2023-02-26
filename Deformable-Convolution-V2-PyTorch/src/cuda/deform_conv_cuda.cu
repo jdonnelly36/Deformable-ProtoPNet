@@ -5,6 +5,7 @@
 #include <ATen/cuda/CUDAContext.h>
 #include <cuda.h>
 #include <cuda_runtime.h>
+#include <iostream>
 
 // #include <THC/THC.h>
 // #include <THC/THCAtomics.cuh>
