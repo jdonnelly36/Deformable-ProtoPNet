@@ -246,19 +246,19 @@ for epoch in range(num_train_epochs):
                     use_ortho_loss=False)
     elif epoch >= num_warm_epochs and epoch - num_warm_epochs < num_secondary_warm_epochs:
         tnt.warm_pre_offset(model=ppnet_multi, log=log, last_layer_fixed=last_layer_fixed)
-        if 'stanford_dogs' in train_dir:
-            warm_lr_scheduler.step()
         _ = tnt.train(model=ppnet_multi, dataloader=train_loader, optimizer=warm_pre_offset_optimizer,
                     class_specific=class_specific, coefs=coefs, log=log, subtractive_margin=subtractive_margin,
                     use_ortho_loss=False)
+        if 'stanford_dogs' in train_dir:
+            warm_lr_scheduler.step()
     else:
         if epoch == num_warm_epochs + num_secondary_warm_epochs:
             ppnet_multi.module.initialize_offset_weights()
         tnt.joint(model=ppnet_multi, log=log, last_layer_fixed=last_layer_fixed)
-        joint_lr_scheduler.step()
         _ = tnt.train(model=ppnet_multi, dataloader=train_loader, optimizer=joint_optimizer,
                     class_specific=class_specific, coefs=coefs, log=log, subtractive_margin=subtractive_margin,
                     use_ortho_loss=True)
+        joint_lr_scheduler.step()
 
     accu = tnt.test(model=ppnet_multi, dataloader=test_loader,
                     class_specific=class_specific, log=log, subtractive_margin=subtractive_margin)
