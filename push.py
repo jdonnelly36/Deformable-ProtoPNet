@@ -94,18 +94,6 @@ def push_prototypes(dataloader, # pytorch dataloader (must be unnormalized in [0
 
     n_prototypes = prototype_network_parallel.module.num_prototypes
     
-    global_max_acts = np.array([-1] * n_prototypes)
-    for push_iter, (search_batch_input, search_y) in enumerate(dataloader):
-        search_batch_input = search_batch_input.cuda()
-        # this computation currently is not parallelized
-        _, proto_act_torch = prototype_network_parallel.module.push_forward(search_batch_input)
-        proto_act_ = np.copy(proto_act_torch.detach().cpu().numpy())
-        # get max activation for each proto
-        max_acts = np.max(proto_act_, axis=(0, 2, 3))
-        
-        global_max_acts = np.maximum(global_max_acts, max_acts)
-        del _, proto_act_torch, proto_act_, max_acts, search_batch_input
-    
     prototype_update = np.reshape(global_max_fmap_patches,
                                   tuple(prototype_network_parallel.module.prototype_shape))
     prototype_network_parallel.module.prototype_vectors.data.copy_(torch.tensor(prototype_update, dtype=torch.float32).cuda())
@@ -145,7 +133,6 @@ def update_prototypes_on_batch(search_batch_input,
 
     with torch.no_grad():
         search_batch = search_batch.cuda()
-        # this computation currently is not parallelized
         protoL_input_torch, proto_act_torch = prototype_network_parallel.module.push_forward(search_batch)
 
     protoL_input_ = np.copy(protoL_input_torch.detach().cpu().numpy())
