@@ -348,9 +348,9 @@ for i,c in enumerate(topk_classes.detach().cpu().numpy()):
     for j in reversed(sorted_indices_cls_act.detach().cpu().numpy()):
         prototype_index = class_prototype_indices[j]
 
-        save_prototype_box(os.path.join(save_analysis_path, 'most_activated_prototypes',
-                                    'top-%d_activated_prototype_with_box.png' % (i+1)),
-                    start_epoch_number, sorted_indices_act[-i].item())
+        save_prototype_box(os.path.join(save_analysis_path, 'top-%d_class_prototypes' % (i+1),
+                                    'top-%d_activated_prototype_with_box.png' % prototype_cnt),
+                    start_epoch_number, prototype_index)
         log('prototype index: {0}'.format(prototype_index))
         log('prototype class identity: {0}'.format(prototype_img_identity[prototype_index]))
         if prototype_max_connection[prototype_index] != prototype_img_identity[prototype_index]:
